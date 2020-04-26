@@ -1,0 +1,27 @@
+version: '3.5'
+
+services:
+  kafka1:
+    image: spotify/kafka
+    ports: 
+      - "2181:2181"
+      - "9092:9092"
+    environment:
+      KAFKA_CREATE_TOPICS: telegraf
+      ADVERTISED_HOST: IP ADDRESS
+      ADVERTISED_PORT: 9092
+  mirrorkafka:
+    image: ambuds/mirror-maker
+    environment:
+      DESTINATION: kafka1:9092
+      SOURCE: kafka2:9093
+      WHITELIST: telegraf
+  kafka2:
+    image: spotify/kafka
+    ports: 
+      - "2182:2181"
+      - "9093:9092"
+    environment:
+      KAFKA_CREATE_TOPICS: telegraf
+      ADVERTISED_HOST: IP ADDRESS
+      ADVERTISED_PORT: 9093
