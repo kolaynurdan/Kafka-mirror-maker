@@ -1,2 +1,2 @@
 # Kafka-mirror-maker
-Sending data from Kafka to Kafkaproxy Docker
+Sending data from Kafka to Kafka microservice container
